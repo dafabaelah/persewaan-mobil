@@ -22,3 +22,9 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+Route::get('/booking', function () {
+    return view('booking.index');
+})->name('booking');
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
