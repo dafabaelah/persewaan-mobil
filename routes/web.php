@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/booking/history', [BookingController::class, 'bookingHistory'])->name('bookingHistory');
     Route::put('/booking/retrun', [BookingController::class, 'returnCar'])->name('returnCar');
     Route::get('/booking/history/{id}', [BookingController::class, 'orderDetail'])->name('orderDetail');
+    Route::get('/booking/search', [BookingController::class, 'bookSearchCar'])->name('bookSearchCar');
 });
 
 Route::controller(BookingController::class,)->group(function() {

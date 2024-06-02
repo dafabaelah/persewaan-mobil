@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cars;
+use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -10,12 +11,61 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
-    function bookingIndex() {
+    function bookingIndex(Request $request) {
 
-        $cars = Cars::all();
-        // dd($cars->toArray());
+        // $cars = Cars::all();
+        
+        $query = Cars::query();
 
-        return view('booking.index', compact('cars'));
+        // Filter berdasarkan model mobil
+        if ($request->has('model')) {
+            $query->where('cars_model', 'like', '%' . $request->model . '%');
+        }
+
+        // Filter berdasarkan kategori mobil
+        if ($request->has('category')) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->where('name', $request->category);
+            });
+        }
+
+        // Filter berdasarkan rentang harga
+        if ($request->has('price')) {
+            $query->where('cars_price', '<=', $request->price);
+        }
+
+        $cars = $query->get();
+
+        $category = Category::pluck('category_name', 'id');
+
+        return view('booking.index', compact('cars', 'category'));
+    }
+
+    function bookSearchCar(Request $request) {
+        $query = Cars::query();
+
+        // Filter berdasarkan model mobil
+        if ($request->has('model')) {
+            $query->where('cars_model', 'like', '%' . $request->model . '%');
+        }
+
+        // Filter berdasarkan kategori mobil
+        if ($request->has('category')) {
+            $query->whereHas('category', function ($q) use ($request) {
+                $q->where('category_name', $request->category);
+            });
+        }
+
+        // Filter berdasarkan rentang harga
+        if ($request->has('price')) {
+            $query->where('cars_price', '<=', $request->price);
+        }
+
+        $cars = $query->get();
+
+        $category = Category::pluck('category_name', 'id');
+
+        return view('booking.index', compact('cars', 'category'));
     }
 
     function order($id) {
