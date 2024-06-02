@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarsController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +36,10 @@ Route::middleware(['guest'])->group(function() {
 
 Route::middleware(['auth'])->group(function() {
     Route::post('/logout', [AuthController::class, 'logoutUser'])->name('logoutUser');
+    Route::get('/dashboard/cars', [CarsController::class, 'carIndex'])->name('carsAdmin');
+    Route::get('/dashboard/cars/create', [CarsController::class, 'carCreate'])->name('carCreate');
+    Route::post('/dashboard/cars/store', [CarsController::class, 'carStore'])->name('carStore');
+    Route::get('/dashboard/cars/edit/{id}', [CarsController::class, 'carEdit'])->name('carEdit');
+    Route::put('/dashboard/cars/update/{id}', [CarsController::class, 'updateCar'])->name('updateCar');
+    Route::get('/dashboard/category', [CategoryController::class, 'categoryIndex'])->name('categoryIndex');
 });

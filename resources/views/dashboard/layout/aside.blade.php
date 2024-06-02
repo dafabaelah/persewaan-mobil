@@ -11,7 +11,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="{{ route('carsAdmin') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.71454 16.826C8.7177 17.7092 8.20137 18.5073 7.40665 18.8476C6.61193 19.1878 5.6956 19.0031 5.08554 18.3797C4.47547 17.7563 4.29202 16.8172 4.62085 16.0008C4.94968 15.1845 5.72591 14.652 6.58709 14.652C7.15029 14.6509 7.69084 14.8794 8.08981 15.2871C8.48879 15.6948 8.71351 16.2483 8.71454 16.826Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.1636 16.826C19.1667 17.7092 18.6504 18.5073 17.8557 18.8476C17.061 19.1878 16.1446 19.0031 15.5346 18.3797C14.9245 17.7563 14.7411 16.8172 15.0699 16.0008C15.3987 15.1845 16.1749 14.652 17.0361 14.652C17.5993 14.6509 18.1399 14.8794 18.5388 15.2871C18.9378 15.6948 19.1625 16.2483 19.1636 16.826Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -21,11 +21,11 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <a href="{{ route('categoryIndex') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="none" viewBox="0 0 18 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 2h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m6 0v3H6V2m6 0a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1M5 5h8m-5 5h5m-8 0h.01M5 14h.01M8 14h5"/>
                     </svg>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Kategori</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Category</span>
                 </a>
             </li>
             <li>
