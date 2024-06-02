@@ -39,7 +39,7 @@ class CarsController extends Controller
         $request->validate([
             'cars_model' => 'required|max:255',
             'cars_brand' => 'required|max:255',
-            'cars_nopol' => 'required|max:255',
+            'cars_nopol' => 'required|regex:/^[A-Za-z]{1,2} \d{1,4} [A-Za-z]{1,3}$/',
             'cars_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category_id' => 'required|exists:categories,id',
             'cars_description' => 'required',
@@ -81,7 +81,7 @@ class CarsController extends Controller
         $request->validate([
             'cars_model' => 'required|max:255',
             'cars_brand' => 'required|max:255',
-            'cars_nopol' => 'required|max:255',
+            'cars_nopol' => 'required|regex:/^[A-Za-z]{1,2} \d{1,4} [A-Za-z]{1,3}$/',
             'cars_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'category_id' => 'required|exists:categories,id',
             'cars_description' => 'required',

@@ -6,6 +6,7 @@ use App\Models\Cars;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -105,5 +106,60 @@ class BookingController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    function bookingHistory() {
+        $orders = Order::where('user_id', auth()->user()->id)->get();
+        // dd($orders);
+        return view('history.index', compact('orders'));
+    }
+
+    function bookFinish() {
+        return view('booking.finish');
+    }
+
+    public function returnCar(Request $request)
+    {
+        $request->validate([
+            'cars_nopol' => 'required|regex:/^[A-Za-z]{1,2} \d{1,4} [A-Za-z]{1,3}$/',
+        ]);
+
+        // dd($request->toArray());
+
+        try {
+            $car = Cars::where('cars_nopol', $request->input('cars_nopol'))->first();
+
+            if (!$car) {
+                return redirect()->route('bookingHistory')->withErrors(['cars_nopol' => 'Car with the specified plate number not found.']);
+            }
+
+            $order = Order::where('car_id', $car->id)
+                            ->where('order_status', 'disewa')
+                            ->first();
+
+            if (!$order) {
+                return redirect()->route('bookingHistory')->withErrors(['cars_nopol' => 'Active order for this car not found.']);
+            }
+
+            $order->order_status = 'diperiksa';
+            $order->save();
+
+            return redirect()->route('orderDetail', ['id' => $order->id])->with('success', 'Car has been successfully returned.');
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        
+    }
+
+    public function orderDetail($id)
+    {
+        $user = Auth::user();
+
+        $orders = Order::where('id', $id)
+                        ->where('user_id', $user->id)
+                        ->first();
+        // dd($orders->toArray());
+        return view('history.detail', compact('orders'));
     }
 }

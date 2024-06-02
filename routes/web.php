@@ -42,6 +42,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard/category', [CategoryController::class, 'categoryIndex'])->name('categoryIndex');
     Route::get('/booking/order/{id}', [BookingController::class, 'order'])->name('order');
     Route::post('/booking/order/car', [BookingController::class, 'orderCar'])->name('orderCar');
+    Route::get('/booking/history', [BookingController::class, 'bookingHistory'])->name('bookingHistory');
+    Route::put('/booking/retrun', [BookingController::class, 'returnCar'])->name('returnCar');
+    Route::get('/booking/history/{id}', [BookingController::class, 'orderDetail'])->name('orderDetail');
 });
 
 Route::controller(BookingController::class,)->group(function() {
