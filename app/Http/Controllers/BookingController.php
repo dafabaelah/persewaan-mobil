@@ -43,7 +43,8 @@ class BookingController extends Controller
 
     function bookSearchCar(Request $request) {
         $query = Cars::query();
-
+        $search = $request->get('search');
+        $query->where('cars_model', 'like', '%' . $search . '%');
         // Filter berdasarkan model mobil
         if ($request->has('model')) {
             $query->where('cars_model', 'like', '%' . $request->model . '%');
