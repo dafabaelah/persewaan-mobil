@@ -44,6 +44,25 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Cars::factory()->count(5)->create();
-        Category::factory()->count(5)->create();
+        // Category::factory()->count(5)->create();
+
+        $categories = [
+            'Hatchback',
+            'Sedan',
+            'SUV',
+            'MPV',
+            'City Car',
+            'Crossover',
+            'Pick-up',
+            'Van',
+            'Sport Car',
+            'Convertible'
+        ];
+
+        foreach ($categories as $category) {
+            Category::create([
+                'category_name' => $category,
+            ]);
+        }
     }
 }

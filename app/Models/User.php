@@ -49,15 +49,7 @@ class User extends Authenticatable
     protected $enums = ['admin', 'user'];
     public $timestamps = true;
 
-    public function cart() {
-        return $this->hasMany(Carts::class, 'user_id', 'id');
-    }
-
     public function reservasi() {
         return $this->hasMany(Order::class, 'user_id', 'id');
-    }
-
-    public function payment() {
-        return $this->hasMany(Payments::class,'user_id','id');
     }
 }

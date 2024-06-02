@@ -16,8 +16,4 @@ class Order extends Model
     public function alat() {
         return $this->belongsTo(Cars::class,'cars_id');
     }
-
-    public function payment() {
-        return $this->belongsTo(Payments::class,'payments_id');
-    }
 }

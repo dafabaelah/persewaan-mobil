@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +24,9 @@ class AppServiceProvider extends ServiceProvider
         if($this->app->environment('production')) {
             URL::forceScheme('https');
         };
+
+        Blade::directive('money', function ($amount) {
+            return "<?php echo 'Rp ' . number_format($amount, 0, ',', '.'); ?>";
+        });
     }
 }

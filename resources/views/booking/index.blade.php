@@ -36,90 +36,19 @@
             </div>
             <!-- Car List Section -->
             <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Single Car Card -->
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Car Name</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: SUV</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $100/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
+                @forelse($cars as $car)
+                    <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        <img class="rounded-t-lg" src="https://via.placeholder.com/640x480.png/004455?text={{ $car->cars_model }}" alt="Car Image">
+                        <div class="p-6">
+                            <h5 class="text-xl font-semibold text-gray-900 dark:text-white">{{ $car->cars_model }}</h5>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Brand: {{ $car->cars_brand }}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Price: @money($car->cars_price)/day</p>
+                            <a href="{{ route('order', ['id' => $car->id]) }}" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
+                        </div>
                     </div>
-                </div>
-                <!-- Repeat for more cars -->
-                <!-- Example of another car card -->
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Another Car</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: Sedan</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $80/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Another Car</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: Sedan</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $80/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Another Car</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: Sedan</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $80/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Another Car</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: Sedan</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $80/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Another Car</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: Sedan</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $80/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Another Car</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: Sedan</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $80/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Another Car</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: Sedan</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $80/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <img class="rounded-t-lg" src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg" alt="Car Image">
-                    <div class="p-6">
-                        <h5 class="text-xl font-semibold text-gray-900 dark:text-white">Another Car</h5>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Category: Sedan</p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">Price: $80/day</p>
-                        <a href="#" class="text-primary-600 hover:underline dark:text-primary-500">Book Now</a>
-                    </div>
-                </div>
+                @empty
+                    <p class="text-gray-600 dark:text-gray-400">Not cars for booking.</p>
+                @endforelse
             </div>
         </div>
     </div>

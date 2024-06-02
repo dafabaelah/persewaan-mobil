@@ -16,7 +16,6 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('car_id')->references('id')->on('cars')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('payment_id')->references('id')->on('payments')->onDelete('cascade');
             $table->dateTime('order_starts');
             $table->dateTime('order_ends');
             $table->integer('order_total_price');

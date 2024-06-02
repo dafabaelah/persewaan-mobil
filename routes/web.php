@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarsController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/booking', function () {
-    return view('booking.index');
-})->name('booking');
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');
@@ -42,4 +40,10 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard/cars/edit/{id}', [CarsController::class, 'carEdit'])->name('carEdit');
     Route::put('/dashboard/cars/update/{id}', [CarsController::class, 'updateCar'])->name('updateCar');
     Route::get('/dashboard/category', [CategoryController::class, 'categoryIndex'])->name('categoryIndex');
+    Route::get('/booking/order/{id}', [BookingController::class, 'order'])->name('order');
+    Route::post('/booking/order/car', [BookingController::class, 'orderCar'])->name('orderCar');
+});
+
+Route::controller(BookingController::class,)->group(function() {
+    Route::get('/booking', 'bookingIndex')->name('booking');
 });
