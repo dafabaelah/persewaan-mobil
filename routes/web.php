@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard/cars/edit/{id}', [CarsController::class, 'carEdit'])->name('carEdit');
     Route::put('/dashboard/cars/update/{id}', [CarsController::class, 'updateCar'])->name('updateCar');
     Route::get('/dashboard/category', [CategoryController::class, 'categoryIndex'])->name('categoryIndex');
+    Route::delete('/dashboard/cars/delete/{id}', [CarsController::class, 'deleteCar'])->name('deleteCar');
     Route::get('/booking/order/{id}', [BookingController::class, 'order'])->name('order');
     Route::post('/booking/order/car', [BookingController::class, 'orderCar'])->name('orderCar');
     Route::get('/booking/history', [BookingController::class, 'bookingHistory'])->name('bookingHistory');

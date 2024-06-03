@@ -123,10 +123,10 @@ class CarsController extends Controller
         }
     }
 
-    public function deleteNovel(Request $request, $id)
+    public function deleteCar(Request $request, $id)
     {
-        $novel = Cars::findOrFail($id);
-        $novel->delete();
+        $car = Cars::findOrFail($id);
+        $car->delete();
         return redirect()->route('carsAdmin')->with('success', 'Post deleted successfully');
     }
 }
