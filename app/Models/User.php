@@ -52,4 +52,9 @@ class User extends Authenticatable
     public function reservasi() {
         return $this->hasMany(Order::class, 'user_id', 'id');
     }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
 }

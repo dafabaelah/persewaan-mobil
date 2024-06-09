@@ -24,14 +24,14 @@
                                 @endforeach
                             </select>
                     </div>
-                    <div class="mb-4">
+                    {{-- <div class="mb-4">
                         <label for="cars_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price Range</label>
                         <input type="range" id="cars_price" min="0" max="1000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                         <div class="flex justify-between text-xs text-gray-500">
                             <span>$0</span>
                             <span>$1000</span>
                         </div>
-                    </div>
+                    </div> --}}
                     <button type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Apply Filters</button>
                 </form>
             </div>

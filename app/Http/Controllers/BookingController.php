@@ -153,7 +153,7 @@ class BookingController extends Controller
             $order->order_duration = $order_duration;
             $order->save();
 
-            return redirect()->route('booking')->with('success', 'Order berhasil dibuat.');
+            return redirect()->route('bookingHistory')->with('success', 'Order berhasil dibuat.');
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
