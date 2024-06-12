@@ -13,6 +13,7 @@
     <div class="min-h-full">
         @include('dashboard.layout.navbar')
         @include('dashboard.layout.aside')
+        @include('sweetalert::alert')
         <main>
             <div class="p-4 sm:ml-64">
                 <div class="flex-auto justify-center rounded mt-14 p-2">
@@ -21,5 +22,12 @@
             </div>
         </main>
     </div>
+    <script>
+        function confirmDeleteCar(id) {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        }
+    </script>
 </body>
 </html>

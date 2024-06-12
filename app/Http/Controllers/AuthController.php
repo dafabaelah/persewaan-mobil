@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AuthController extends Controller
 {
@@ -44,6 +45,8 @@ class AuthController extends Controller
 
         Auth::login($user);
 
+        Alert::success('Success', 'Register success');
+
         return redirect()->route('welcome');
     }
 
@@ -61,20 +64,26 @@ class AuthController extends Controller
                 
                 switch ($user->role) {
                     case 'admin':
+                        Alert::success('Success', 'Login success');
                         return redirect()->route('dashboard');
                         break;
                     case 'user':
+                        Alert::success('Success', 'Login success');
                         return redirect()->route('booking');
                         break;
                     default:
                         return redirect()->route('welcome');
                         break;
                 }
-    
+                
+                Alert::success('Success', 'Login success');
+
                 return redirect()->route('welcome');
             }
-    
-            return back()->with('status', 'Invalid login details');
+            
+            Alert::error('Error', 'Invalid login details');
+
+            return back();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

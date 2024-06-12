@@ -8,6 +8,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BookingController extends Controller
 {
@@ -79,47 +80,6 @@ class BookingController extends Controller
         return view('booking.order', compact('cars'));
     }
 
-    // public function orderCar(Request $request)
-    // {
-    //     dd($request->toArray());
-    //     // Validasi input
-    //     $request->validate([
-    //         'car_id' => 'required|exists:cars,id',
-    //         'order_starts' => 'required|date',
-    //         'order_ends' => 'required|date|after:order_starts',
-    //     ]);
-
-    //     try {
-    //         // Hitung durasi pemesanan dalam hari
-    //         $order_starts = new \DateTime($request->order_starts);
-    //         $order_ends = new \DateTime($request->order_ends);
-    //         $order_duration = $order_starts->diff($order_ends)->days;
-    //         $order_total_qty = '1';
-    //         dd($order_duration, $order_total_qty, $request->car_id, $request->order_starts, $request->order_ends, $request->order_total_qty);
-
-    //         // Hitung total harga
-    //         $car = Cars::findOrFail($request->car_id);
-    //         $order_total_price = $car->cars_price * $order_duration * $request->$order_total_qty;
-
-    //         // Simpan pesanan
-    //         $order = new Order();
-    //         $order->car_id = $request->car_id;
-    //         $order->user_id = auth()->user()->id; // Sesuaikan dengan sistem autentikasi Anda
-    //         $order->order_starts = $order_starts;
-    //         $order->order_ends = $order_ends;
-    //         $order->order_total_price = $order_total_price;
-    //         $order->order_total_qty = $order_total_qty;
-    //         $order->order_status = 'disewa'; // Sesuaikan dengan status default yang Anda inginkan
-    //         $order->order_duration = $order_duration;
-    //         $order->save();
-
-    //         return redirect()->route('order')->with('success', 'Order berhasil dibuat.');
-    //     } catch (\Exception $e) {
-    //         return response()->json(['error' => $e->getMessage()], 500);
-    //     }
-
-        
-    // }
 
     public function orderCar(Request $request)
     {
@@ -152,6 +112,8 @@ class BookingController extends Controller
             $order->order_status = 'disewa';
             $order->order_duration = $order_duration;
             $order->save();
+            
+            Alert::suceess('Success', 'Car has been booked');
 
             return redirect()->route('bookingHistory')->with('success', 'Order berhasil dibuat.');
         } catch (\Exception $e) {

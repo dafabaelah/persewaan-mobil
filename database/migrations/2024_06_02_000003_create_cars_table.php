@@ -20,6 +20,8 @@ return new class extends Migration
             $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->text('cars_description')->nullable();
             $table->integer('cars_price');
+            $table->boolean('is_deleted')->default(false);
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

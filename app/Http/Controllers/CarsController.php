@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CarsController extends Controller
 {
@@ -14,7 +15,9 @@ class CarsController extends Controller
     {
         $cars = Cars::all();
         // dd($cars->toArray());
-
+        $title = 'Delete Cars';
+        $text = 'Cars has been deleted';
+        confirmDelete($title, $text);
         return view('dashboard.cars.index', compact('cars'));
     }
 
@@ -67,8 +70,10 @@ class CarsController extends Controller
                 'cars_description' => $request->cars_description,
                 'cars_price' => $request->cars_price,
             ]);
+
+            Alert::suceess('Success', 'Car has been added');
     
-            return redirect()->route('carsAdmin')->with('success', 'Post created successfully');
+            return redirect()->route('carsAdmin');
             
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -114,7 +119,8 @@ class CarsController extends Controller
             ];
 
             $cars->update($dataToUpdate);
-    
+
+            Alert::success('Success', 'Car has been edited');
             // Redirect or perform other actions
             return redirect()->route('carsAdmin')->with('success', 'Post created successfully');
             //code...
@@ -126,7 +132,10 @@ class CarsController extends Controller
     public function deleteCar(Request $request, $id)
     {
         $car = Cars::findOrFail($id);
+        $car->is_deleted = true;
+        $car->save();
         $car->delete();
-        return redirect()->route('carsAdmin')->with('success', 'Post deleted successfully');
+        Alert::success('Success', 'Car has been deleted');
+        return redirect()->route('carsAdmin');
     }
 }
